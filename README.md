@@ -46,4 +46,18 @@ attrib +h <directory-name>
 attrib -h <directory-name>
 ```
 
+<h3>Running Task</h3>
+
+```
+tasklist
+```
+
+<h3>CPU information</h3>
+
+```
+wmic
+```
+```
+cpu
+```
 
