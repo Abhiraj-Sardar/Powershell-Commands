@@ -140,3 +140,9 @@ Disable-NetAdapter -ifAlias <Adapter-name>
 ```
 Enable-NetAdapter -ifAlias <Adapter-name>
 ```
+
+<h3>Rename Computer</h3>
+
+```
+Rename-Computer -NewName "<Name>"
+```
