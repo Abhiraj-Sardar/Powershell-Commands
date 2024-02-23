@@ -105,10 +105,38 @@ chkdsk
 systeminfo
 ```
 
+<h3>IP Address Details</h3>
+
+```
+Get-NetIPAddress
+```
+
 <h3>Adapter Details</h3>
 
 ```
 Get-NetAdapter
 ```
 
+<h3>Change IP address and default gateway</h3>
 
+```
+New-NetIPAddress -InterfaceIndex <Provided Index ex.(12)> -IPAddress <Your IPv4 Address> -PrefixLength 8 -DefaultGateway <Your Gateway Address>
+```
+
+<h3>Rename Adapter</h3>
+
+```
+Rename-NetAdapter -name <current-name> -NewName <New Name>
+```
+
+<h3>Disable Adapter</h3>
+
+```
+Disable-NetAdapter -ifAlias <Adapter-name>
+```
+
+<h3>Enable Adapter</h3>
+
+```
+Enable-NetAdapter -ifAlias <Adapter-name>
+```
