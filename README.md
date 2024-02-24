@@ -259,3 +259,9 @@ Disable-NetAdapter "Wi-Fi"
 Enable-NetAdapter "Wi-Fi"
 ```
 
+<h3>Show Information of a website </h3>
+
+```
+nslookup <Url (ex: www.yahoo.com)
+```
+
