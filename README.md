@@ -178,6 +178,12 @@ net start
 net stop <service-name>
 ```
 
+<p>or</p>
+
+```
+Stop-Service "<service-name>"
+```
+
 <h3>Cmdlet to see services</h3>
 
 ```
