@@ -196,3 +196,66 @@ Stop-Service "<service-name>"
 ```
 Get-Service | Where-Object {$_.Status -eq 'running'}
 ```
+
+<h3>To Know about Windows</h3>
+
+```
+ winver
+```
+
+<h3>get volume info</h3>
+
+```
+Get-Volume
+```
+
+<h3>See OS Version</h3>
+
+```
+[System.Environment]::OSVersion.Version
+```
+
+<h3>See BIOS Version</h3>
+
+```
+wmic
+```
+
+```
+bios get smbiosbiosversion
+```
+
+<h3>Get Route from your system to a website</h3>
+
+```
+tracert <Url (ex: www.google.com)>
+```
+
+<h3>See All Adapters Name</h3>
+
+```
+wmic
+```
+
+```
+nic get name
+```
+
+<h3>See all the available WiFi Networks</h3>
+
+```
+netsh wlan show all
+```
+
+<h3>Disconnect Wifi</h3>
+
+```
+Disable-NetAdapter "Wi-Fi"
+```
+
+<h3>Enable Wifi</h3>
+
+```
+Enable-NetAdapter "Wi-Fi"
+```
+
