@@ -185,7 +185,7 @@ net stop <service-name>
 ```
 
 <h3>Show Services whose Status is running</h3>
-<p>here $_.Status refers to Column Status</p>
+<p>here <b>$_.Status</b> refers to Column <b>Status</b></p>
 
 ```
 Get-Service | Where-Object {$_.Status -eq 'running'}
