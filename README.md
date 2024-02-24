@@ -265,3 +265,19 @@ Enable-NetAdapter "Wi-Fi"
 nslookup <Url (ex: www.yahoo.com)
 ```
 
+<h3>Copy The cmd text in a txt file</h3>
+
+```
+ echo hi there > <filename.txt>
+```
+<p>or</p>
+
+```
+Set-Content <filename.txt> "hello this is a text"
+```
+
+<h3>Shutdown System after 200 seconds</h3>
+
+```
+ shutdown -s -t 200
+```
