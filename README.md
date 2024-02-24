@@ -146,3 +146,45 @@ Enable-NetAdapter -ifAlias <Adapter-name>
 ```
 Rename-Computer -NewName "<Name>"
 ```
+
+<h3>Get Process Info</h3>
+
+```
+Get-Process <Process-name>
+```
+
+<h3>Stop a process</h3>
+
+```
+Get-Process <process-name> | stop-process
+```
+
+<h3>Start a process</h3>
+
+```
+start-process <process-name>
+```
+
+<h3>See Services</h3>
+
+```
+net start
+```
+
+<h3>Stop a service</h3>
+
+```
+net stop <service-name>
+```
+
+<h3>Cmdlet to see services</h3>
+
+```
+ Get-Service
+```
+
+<h3>Show Services whose Status is running</h3>
+<p>here $_.Status refers to Column Status</p>
+```
+Get-Service | Where-Object {$_.Status -eq 'running'}
+```
