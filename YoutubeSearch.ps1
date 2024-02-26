@@ -19,7 +19,7 @@ $searchBox = $driver.FindElementByName("q")  # Locate the search box element
 $searchBox.SendKeys("hello world")  # Type "hello world" in the search box
 
 # Wait for a while (optional)
-Start-Sleep -Seconds 5
+#Start-Sleep -Seconds 5
 
 # Close the browser
-$driver.Quit()
+#$driver.Quit()
