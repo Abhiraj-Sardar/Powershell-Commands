@@ -41,3 +41,4 @@ $workbook.Close()
 [System.GC]::WaitForPendingFinalizers()
 
 Write-Output "Data copied from text file and pasted into Excel file successfully."
+
