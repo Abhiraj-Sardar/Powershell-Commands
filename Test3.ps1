@@ -24,14 +24,17 @@ foreach ($row in $excelData) {
     $searchBox.SendKeys($totalData)
     $searchBox.SendKeys([OpenQA.Selenium.Keys]::Enter)
 
+    #getting the first text value
     $firstText = $driver.FindElementByXPath('//*[@id="rso"]/div[1]/div/div/div/div/div/div/div/div[1]/div/span/a/h3')
     $text=$firstText.Text
     
+    #matching the text
+
     if($text -match "YouTube")
     {
         $extractedText=$text.Split(":")
         $extractedText=$extractedText[0]
-        Write-Host("$extractedText : YES")
+        Write-Host("$extractedText : YES") 
     }
     
     Start-Sleep -Seconds 10
