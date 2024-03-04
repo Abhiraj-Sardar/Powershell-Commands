@@ -1,34 +1,66 @@
-﻿# Import Selenium module
+﻿# Import the Selenium and ImportExcel modules
 Import-Module Selenium
+Import-Module ImportExcel
 
-<# DO NOT RUN THIS #>
+# Specify the path to the Excel files
+$inputExcelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\index.xlsx"
+$outputExcelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\Hello.xlsx"
 
-# Start Chrome WebDriver
-$driver = Start-SeChrome
+# Load the Excel data
+$excelData = Import-Excel -Path $inputExcelFilePath
 
-# Navigate to Figma login page
-$driver.Navigate().GoToUrl("https://www.figma.com/login")
+# Create an empty array to store matching data
+$matchingData = @()
 
-# Wait for the login page to load
-Start-Sleep -Seconds 5
+# Loop through each row in the Excel data
+foreach ($row in $excelData) {
+    $totalData = $row.Name
 
-# Enter username and password and submit the form (replace with actual login details)
-$usernameInput = $driver.FindElementById("username")
-$usernameInput.SendKeys("your_username")
-$passwordInput = $driver.FindElementById("password")
-$passwordInput.SendKeys("your_password")
-$submitButton = $driver.FindElementByCssSelector("button[type='submit']")
-$submitButton.Click()
+    # Start a new Chrome session
+    $driverPath = "C:\Users\ABHIRAJ SARDAR\Desktop\Powershell-Commands\Driver"  # Specify the path to ChromeDriver
+    $driverService = [OpenQA.Selenium.Chrome.ChromeDriverService]::CreateDefaultService($driverPath)
+    $driver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($driverService)
 
-# Wait for the dashboard or profile page to load
-# You can wait for specific elements that appear after successful login
-# For example, if there is a "Logout" button, wait until it's visible
-try {
-    $logoutButton = $driver.FindElementByXPath("//button[contains(text(), 'Logout')]")
-    Write-Host "Login successful!"
-} catch {
-    Write-Host "Login failed or timed out."
+    # Open Google in the browser
+    $driver.Navigate().GoToUrl("https://www.google.com")
+
+    # Find the search box and insert the data
+    $searchBox = $driver.FindElementByName("q")
+    $searchBox.SendKeys($totalData)
+    $searchBox.SendKeys([OpenQA.Selenium.Keys]::Enter)
+
+    # Wait for the search results to load
+    Start-Sleep -Seconds 5
+
+    # Get the text of the first search result (if any)
+    $firstText = $null
+    try {
+        $firstText = $driver.FindElementByXPath('//*[@id="rso"]/div[1]/div/div/div/div/div/div/div/div[1]/div/span/a/h3').Text
+    } catch {
+        Write-Host "No search result found."
+    }
+
+    # Check if the $firstText variable is not empty
+    if ($firstText -ne "") {
+        # If the text contains "YouTube", extract the text before ":"
+        if ($firstText -match "YouTube") {
+            $extractedText = $firstText.Split(":")[0]
+            Write-Host("$extractedText : YES")
+            
+            # Add the matching data to the array
+            $matchingData += [PSCustomObject]@{
+                Name = $totalData
+            }
+        } else {
+            Write-Host "No match found for 'YouTube'."
+        }
+    } else {
+        Write-Host "No search result text found."
+    }
+
+    # Optionally, you can close the browser session after each search
+    $driver.Quit()
 }
 
-# Close the browser
-$driver.Quit()
+# Export the matching data to a new Excel sheet
+$matchingData | Export-Excel -Path $outputExcelFilePath -AutoSize -WorksheetName "MatchingData" -ClearSheet -Show

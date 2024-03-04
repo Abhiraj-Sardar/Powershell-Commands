@@ -2,7 +2,7 @@
 Import-Module ImportExcel
 
 # Specify the path to the Excel file
-$excelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\index.xlsx"
+$excelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\Dummy.xlsx"
 
 # Load the Excel data
 $excelData = Import-Excel -Path $excelFilePath
