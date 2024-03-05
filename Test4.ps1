@@ -4,7 +4,7 @@ Import-Module ImportExcel
 
 # Specify the path to the Excel files
 $inputExcelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\index.xlsx"
-$outputExcelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\Hello.xlsx"
+$outputExcelFilePath = "C:\Users\ABHIRAJ SARDAR\Desktop\Output.xlsx"
 
 # Load the Excel data
 $excelData = Import-Excel -Path $inputExcelFilePath
@@ -35,7 +35,7 @@ foreach ($row in $excelData) {
     # Get the text of the first search result (if any)
     $firstText = $null
     try {
-        $firstText = $driver.FindElementByXPath('//*[@id="rso"]/div[1]/div/div/div/div/div/div/div/div[1]/div/span/a/h3').Text
+        $firstText = $driver.FindElementByXPath('//*[@id="rso"]/div[1]/div/div/div/div/div/div/div/div[1]/div/span/a/h3').Text #will throw error if the element does not appea
     } catch {
         Write-Host "No search result found."
     }
@@ -50,6 +50,7 @@ foreach ($row in $excelData) {
             # Add the matching data to the array
             $matchingData += [PSCustomObject]@{
                 Name = $totalData
+                Work = "Content Creation"
             }
         } else {
             Write-Host "No match found for 'YouTube'."
